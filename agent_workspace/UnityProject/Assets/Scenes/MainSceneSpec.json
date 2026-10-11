@@ -1,0 +1,9 @@
+{
+  "scene": "MainScene",
+  "objects": [
+    "Ground",
+    "Building_01",
+    "Building_02",
+    "PlayerSpawn"
+  ]
+}

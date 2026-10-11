@@ -1,0 +1,20 @@
+{
+  "entities": [
+    "Player",
+    "Enemy"
+  ],
+  "layers": [
+    "Default",
+    "Player",
+    "Enemy",
+    "Environment"
+  ],
+  "physics": {
+    "gravity": [
+      0,
+      -9.81,
+      0
+    ],
+    "collision_detection": true
+  }
+}

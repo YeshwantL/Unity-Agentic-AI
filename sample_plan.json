@@ -1,0 +1,121 @@
+{
+  "project_name": "Urban Survival: Wave Defense",
+  "requirements": [
+    "Build a 3D Unity survival game set in a compact urban arena.",
+    "The player can move, aim, and use a ranged weapon against incoming enemies.",
+    "Enemies arrive in increasingly difficult waves and pursue the player.",
+    "Track player health, ammunition, current wave, and score in the user interface.",
+    "The run ends when the player's health reaches zero."
+  ],
+  "phases": [
+    {
+      "id": 1,
+      "name": "Project and Arena Setup",
+      "tasks": [
+        {
+          "id": "T1.1",
+          "description": "Create the Unity 3D project and organize the initial folders and packages.",
+          "dependencies": []
+        },
+        {
+          "id": "T1.2",
+          "description": "Build a compact urban arena with a ground plane, cover, buildings, lighting, and a player spawn point.",
+          "dependencies": ["T1.1"]
+        },
+        {
+          "id": "T1.3",
+          "description": "Create placeholder player and enemy objects and configure the scene layers and physics.",
+          "dependencies": ["T1.2"]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Player Controls and Combat",
+      "tasks": [
+        {
+          "id": "T2.1",
+          "description": "Implement third-person player movement and camera aiming.",
+          "dependencies": ["T1.3"]
+        },
+        {
+          "id": "T2.2",
+          "description": "Add player health and a clear damage and death state.",
+          "dependencies": ["T2.1"]
+        },
+        {
+          "id": "T2.3",
+          "description": "Add a basic ranged weapon with firing, ammunition, and reload behavior.",
+          "dependencies": ["T2.1"]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Enemy and Wave Systems",
+      "tasks": [
+        {
+          "id": "T3.1",
+          "description": "Create an enemy that can take damage, pursue the player, and attack at close range.",
+          "dependencies": ["T1.3", "T2.2"]
+        },
+        {
+          "id": "T3.2",
+          "description": "Create a wave manager that spawns enemies and increases wave difficulty over time.",
+          "dependencies": ["T3.1"]
+        },
+        {
+          "id": "T3.3",
+          "description": "Award score when enemies are defeated and detect when a wave is cleared.",
+          "dependencies": ["T3.2", "T2.3"]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Interface and Game Flow",
+      "tasks": [
+        {
+          "id": "T4.1",
+          "description": "Display player health, ammunition, wave number, and score in the HUD.",
+          "dependencies": ["T2.2", "T2.3", "T3.2", "T3.3"]
+        },
+        {
+          "id": "T4.2",
+          "description": "Add start, pause, and game-over screens with a restart option.",
+          "dependencies": ["T4.1"]
+        },
+        {
+          "id": "T4.3.PREP",
+          "description": "Assemble existing gameplay systems into a minimal playable SampleScene and verify a PlayMode smoke test.",
+          "dependencies": ["T4.2"]
+        },
+        {
+          "id": "T4.3",
+          "description": "Play through multiple waves and tune enemy counts, damage, and ammunition balance.",
+          "dependencies": ["T4.3.PREP"]
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {"task": "T1.2", "depends_on": ["T1.1"]},
+    {"task": "T1.3", "depends_on": ["T1.2"]},
+    {"task": "T2.1", "depends_on": ["T1.3"]},
+    {"task": "T2.2", "depends_on": ["T2.1"]},
+    {"task": "T2.3", "depends_on": ["T2.1"]},
+    {"task": "T3.1", "depends_on": ["T1.3", "T2.2"]},
+    {"task": "T3.2", "depends_on": ["T3.1"]},
+    {"task": "T3.3", "depends_on": ["T3.2", "T2.3"]},
+    {"task": "T4.1", "depends_on": ["T2.2", "T2.3", "T3.2", "T3.3"]},
+    {"task": "T4.2", "depends_on": ["T4.1"]},
+    {"task": "T4.3.PREP", "depends_on": ["T4.2"]},
+    {"task": "T4.3", "depends_on": ["T4.3.PREP"]}
+  ],
+  "assumptions": [
+    "The first version uses placeholder or free assets rather than custom art.",
+    "The game is a single-player, offline experience for desktop.",
+    "The first playable version uses one arena and one enemy type.",
+    "The camera is third-person and the weapon uses a simple hitscan or projectile implementation."
+  ]
+}
